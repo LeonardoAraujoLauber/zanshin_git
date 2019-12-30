@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zanshin_app/widgets/barra_inferior.dart';
-import 'package:zanshin_app/widgets/main_drawer.dart';
-import 'package:zanshin_app/widgets/my_app_bar.dart';
-
+import '../widgets/barra_inferior.dart';
+import '../widgets/main_drawer.dart';
 
 class KarateScreen extends StatefulWidget {
   static const ruta = '/karate-screen';
@@ -12,7 +10,7 @@ class KarateScreen extends StatefulWidget {
 }
 
 class _KarateScreenState extends State<KarateScreen> {
-   PreferredSizeWidget _appBar(){
+  PreferredSizeWidget _appBar() {
     return AppBar(
       title: Text(
         'Zanshin App',
@@ -22,16 +20,116 @@ class _KarateScreenState extends State<KarateScreen> {
     );
   }
 
+  Widget _opcionesProfes(
+    MediaQueryData mediaQuery,
+  ) {
+    return Container(
+      color: Theme.of(context).accentColor,
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: (mediaQuery.size.height) * 0.02,
+            child: Text('Profesores'),
+          ),
+          Container(
+            width: mediaQuery.size.width,
+            height: (mediaQuery.size.height) * 0.20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+              Column(
+                children: <Widget>[
+                  InkWell(
+                    onTap: () => {},
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(
+                          (mediaQuery.size.width) * 0.06,
+                          (mediaQuery.size.height) * 0.05,
+                          (mediaQuery.size.width) * 0.06,
+                          (mediaQuery.size.height) * 0.05),
+                      width: (mediaQuery.size.width) * 0.25,
+                      child: new Image.asset(
+                        'assets/imagen/silueta.jpeg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(child: Text('Federico Diaz'),),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  InkWell(
+                    onTap: () => {},
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(
+                          (mediaQuery.size.width) * 0.06,
+                          (mediaQuery.size.height) * 0.05,
+                          (mediaQuery.size.width) * 0.06,
+                          (mediaQuery.size.height) * 0.05),
+                      width: (mediaQuery.size.width) * 0.25,
+                      child: new Image.asset(
+                        'assets/imagen/silueta.jpeg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(child: Text('Asia Araújo'),),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  InkWell(
+                    onTap: () => {},
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(
+                          (mediaQuery.size.width) * 0.06,
+                          (mediaQuery.size.height) * 0.05,
+                          (mediaQuery.size.width) * 0.06,
+                          (mediaQuery.size.height) * 0.05),
+                      width: (mediaQuery.size.width) * 0.25,
+                      child: new Image.asset(
+                        'assets/imagen/silueta.jpeg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(child: Text('Leonardo Araújo'),),
+                ],
+              ),
+            ]),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _body(
+    MediaQueryData mediaQuery,
+  ) {
+    return Column(
+      children: <Widget>[
+        _opcionesProfes(mediaQuery),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = _appBar();
+    final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       appBar: appBar,
-    drawer: MainDeawer(),
-    body: Center(
-      child: Text('data'),
-    ),
-    bottomNavigationBar: BarraIferior(ctx: context,appBar: appBar,mediaQuery: MediaQuery.of(context),),
+      drawer: MainDeawer(),
+      body: _body(
+        mediaQuery,
+      ),
+      bottomNavigationBar: BarraIferior(
+        ctx: context,
+        appBar: appBar,
+        mediaQuery: MediaQuery.of(context),
+      ),
     );
   }
 }

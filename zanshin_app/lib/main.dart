@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.blue,
         backgroundColor: Colors.teal,
       ),
-      home: MyHomePage('Zanshin App'),
+      initialRoute: '/',
       routes: {
+        '/' : (ctx) => MyHomePage('Zanshin App'),
         KarateScreen.ruta: (ctx) => KarateScreen(),
       },
     );
