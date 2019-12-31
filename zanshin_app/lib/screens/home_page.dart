@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:zanshin_app/screens/karate_screen.dart';
 import 'package:zanshin_app/widgets/contenedor_info_usuario.dart';
-import 'package:zanshin_app/widgets/my_app_bar.dart';
 import '../widgets/main_drawer.dart';
 import '../widgets/barra_inferior.dart';
 import '../widgets/actividad_item.dart';

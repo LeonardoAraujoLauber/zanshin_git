@@ -1,6 +1,6 @@
-import './modulos/kata.dart';
+import '../modulos/kata.dart';
 
-const Katas = const [
+const KATAS = const [
   Kata(nombre: 'Taikyoku Sono Ichi', url: 'https://youtu.be/Sx0NqCWVeeA'),
   Kata(nombre: 'Taikyoku Sono Ni', url: 'https://youtu.be/BtSJVZWzfXY'),
   Kata(nombre: 'Taikyoku Sono San', url: 'https://youtu.be/L2c5HoHuDbY'),

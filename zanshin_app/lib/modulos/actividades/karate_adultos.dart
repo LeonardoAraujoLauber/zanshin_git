@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:zanshin_app/katas.dart';
+import '../../datos/katas.dart';
 
 class KarateAdultos extends StatefulWidget {
   @override
@@ -100,10 +100,10 @@ class _KarateAdultosState extends State<KarateAdultos> {
             Container(
               height: 100,
               child: ListView.builder(
-                itemCount: Katas.length,
+                itemCount: KATAS.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    child: Center(child: Text('${Katas[index].nombre}')),
+                    child: Center(child: Text('${KATAS[index].nombre}')),
                   );
                 },
               ),

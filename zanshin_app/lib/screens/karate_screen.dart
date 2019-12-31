@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:zanshin_app/datos/examenes.dart';
+import 'package:zanshin_app/modulos/examen.dart';
+//import 'package:zanshin_app/widgets/examen_widget.dart';
+import '../widgets/profesores_widget.dart';
 import '../widgets/barra_inferior.dart';
 import '../widgets/main_drawer.dart';
 
@@ -10,6 +14,8 @@ class KarateScreen extends StatefulWidget {
 }
 
 class _KarateScreenState extends State<KarateScreen> {
+  List<Examen> examenes = EXAMENES;
+  int examenMostrado = 0;
   PreferredSizeWidget _appBar() {
     return AppBar(
       title: Text(
@@ -20,85 +26,54 @@ class _KarateScreenState extends State<KarateScreen> {
     );
   }
 
-  Widget _opcionesProfes(
-    MediaQueryData mediaQuery,
-  ) {
+  Widget _builderExamenWidget(MediaQueryData mediaQuery) {
     return Container(
-      color: Theme.of(context).accentColor,
+      color: Colors.red,
+      height: mediaQuery.size.height * 0.1,
       child: Column(
         children: <Widget>[
-          Container(
-            height: (mediaQuery.size.height) * 0.02,
-            child: Text('Profesores'),
+          Center(
+            child: Text('Examenes', style: TextStyle(fontSize: 30.0),),
           ),
           Container(
-            width: mediaQuery.size.width,
-            height: (mediaQuery.size.height) * 0.20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-              Column(
-                children: <Widget>[
-                  InkWell(
-                    onTap: () => {},
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(
-                          (mediaQuery.size.width) * 0.06,
-                          (mediaQuery.size.height) * 0.05,
-                          (mediaQuery.size.width) * 0.06,
-                          (mediaQuery.size.height) * 0.05),
-                      width: (mediaQuery.size.width) * 0.25,
-                      child: new Image.asset(
-                        'assets/imagen/silueta.jpeg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                Container(
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        examenMostrado != 0
+                            ? examenMostrado--
+                            : examenMostrado = (examenes.length - 1);
+                      });
+                    },
+                    icon: Icon(Icons.arrow_left),
                   ),
-                  Container(child: Text('Federico Diaz'),),
-                ],
-              ),
-              Column(
-                children: <Widget>[
-                  InkWell(
-                    onTap: () => {},
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(
-                          (mediaQuery.size.width) * 0.06,
-                          (mediaQuery.size.height) * 0.05,
-                          (mediaQuery.size.width) * 0.06,
-                          (mediaQuery.size.height) * 0.05),
-                      width: (mediaQuery.size.width) * 0.25,
-                      child: new Image.asset(
-                        'assets/imagen/silueta.jpeg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                ),
+                Container(
+                  width: mediaQuery.size.width * 0.7,
+                  child: Text(
+                    examenes[examenMostrado].grado,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20.0),
                   ),
-                  Container(child: Text('Asia Araújo'),),
-                ],
-              ),
-              Column(
-                children: <Widget>[
-                  InkWell(
-                    onTap: () => {},
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(
-                          (mediaQuery.size.width) * 0.06,
-                          (mediaQuery.size.height) * 0.05,
-                          (mediaQuery.size.width) * 0.06,
-                          (mediaQuery.size.height) * 0.05),
-                      width: (mediaQuery.size.width) * 0.25,
-                      child: new Image.asset(
-                        'assets/imagen/silueta.jpeg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                ),
+                Container(
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        examenMostrado != (examenes.length - 1)
+                            ? examenMostrado++
+                            : examenMostrado = 0;
+                      });
+                    },
+                    icon: Icon(Icons.arrow_right),
                   ),
-                  Container(child: Text('Leonardo Araújo'),),
-                ],
-              ),
-            ]),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -108,9 +83,21 @@ class _KarateScreenState extends State<KarateScreen> {
   Widget _body(
     MediaQueryData mediaQuery,
   ) {
-    return Column(
+    return ListView(
       children: <Widget>[
-        _opcionesProfes(mediaQuery),
+        ProfesoresWidget(mediaQuery),
+        _builderExamenWidget(mediaQuery),
+        Container(
+          child: InkWell(
+            child: Text(
+              'Teorico',
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
+            onTap: () {},
+          ),
+        ),
       ],
     );
   }
